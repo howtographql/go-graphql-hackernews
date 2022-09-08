@@ -1,9 +1,5 @@
----
-title: GraphQL Server With Golang
-published: false
-description: Introduction to GraphQL Server with Golang and Gqlgen.
-tags: graphql, go, api, gqlgen
----
+# GraphQL Server (schema-first) With Golang
+
 ## Table Of Contents
 - [Table Of Contents](#table-of-contents)
   - [How to Run The Project <a name="how-to-run-project"></a>](#how-to-run-the-project-)
