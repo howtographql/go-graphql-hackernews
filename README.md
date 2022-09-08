@@ -166,5 +166,5 @@ Expected output similar to:
 ```
 
 ### Tutorial
-to see the latest version of tutorial visit https://www.howtographql.com/graphql-go/0-introduction/
+to see the tutorial visit https://www.howtographql.com/graphql-go/0-introduction/
 
