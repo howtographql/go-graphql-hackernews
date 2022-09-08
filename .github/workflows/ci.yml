@@ -21,8 +21,11 @@ jobs:
       with:
         go-version: ${{ matrix.go-version }}
 
+    - name: Generate
+      run: make generate
+
     - name: Build
-      run: go build -v
+      run: make build
 
     - name: Test
-      run: go test -v
+      run: make test
