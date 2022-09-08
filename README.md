@@ -36,7 +36,7 @@ Now navigate to https://localhost:8080 you can see graphiql playground and query
 
 Execute createUser
 
-```json
+```graphql
 mutation createUser {
   createUser(input: {username: "usr2", password: "pwd"})
 }
@@ -56,7 +56,7 @@ Expected output similar to:
 
 Execute loginUser
 
-```json
+```graphql
 mutation loginUser {
   login(input: {username: "usr2", password: "pwd"})
 }
@@ -76,7 +76,7 @@ Expected output similar to:
 
 Set Authorization Header, use token from loginUser
 
-```json
+```graphql
 {
   "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjI3MzgyNDQsInVzZXJuYW1lIjoidXNyMiJ9.z0yrV6ajZO8IqFBlEuTwAnKRP-C15MuL1REmjJ5YYU8"
 }
@@ -85,7 +85,7 @@ Set Authorization Header, use token from loginUser
 Execute createLink
 
 
-```json
+```graphql
 mutation createLink {
   createLink(input: {title: "real link!", address: "www.graphql.org"}) {
     user {
@@ -97,7 +97,7 @@ mutation createLink {
 
 Expected output similar to:
 
-```json
+```graphql
 {
   "data": {
     "createLink": {
@@ -114,7 +114,7 @@ Expected output similar to:
 Execute findLinks
 
 
-```json
+```graphql
 query findLinks {
   links {
     title
@@ -151,7 +151,7 @@ Expected output similar to:
 Execute refreshToken, provide current token as an input 
 
 
-```json
+```graphql
 mutation refreshToken{
   refreshToken(input: {
     token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjI3MzgyNDQsInVzZXJuYW1lIjoidXNyMiJ9.z0yrV6ajZO8IqFBlEuTwAnKRP-C15MuL1REmjJ5YYU8"
