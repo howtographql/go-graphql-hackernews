@@ -1,5 +1,5 @@
 ---
-title: ‌Introduction To GraphQL Server With Golang
+title: GraphQL Server With Golang
 published: false
 description: Introduction to GraphQL Server with Golang and Gqlgen.
 tags: graphql, go, api, gqlgen
@@ -7,6 +7,11 @@ tags: graphql, go, api, gqlgen
 ## Table Of Contents
 - [Table Of Contents](#table-of-contents)
   - [How to Run The Project <a name="how-to-run-project"></a>](#how-to-run-the-project-)
+    - [createUser](#createuser)
+    - [loginUser](#loginuser)
+    - [createLink](#createlink)
+    - [findLinks](#findlinks)
+    - [refreshToken](#refreshtoken)
   - [Tutorial](#tutorial)
   
   
@@ -27,6 +32,143 @@ go run server.go
 ```
 Now navigate to https://localhost:8080 you can see graphiql playground and query the graphql server.
 
+#### createUser
+
+Execute createUser
+
+```json
+mutation createUser {
+  createUser(input: {username: "usr2", password: "pwd"})
+}
+```
+
+Expected output similar to:
+
+```json
+{
+  "data": {
+    "createUser": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjI3MzgyNDQsInVzZXJuYW1lIjoidXNyMiJ9.z0yrV6ajZO8IqFBlEuTwAnKRP-C15MuL1REmjJ5YYU8"
+  }
+}
+```
+
+#### loginUser
+
+Execute loginUser
+
+```json
+mutation loginUser {
+  login(input: {username: "usr2", password: "pwd"})
+}
+```
+
+Expected output similar to:
+
+```json
+{
+  "data": {
+    "login": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjI3MzgyNDQsInVzZXJuYW1lIjoidXNyMiJ9.z0yrV6ajZO8IqFBlEuTwAnKRP-C15MuL1REmjJ5YYU8"
+  }
+}
+```
+
+#### createLink
+
+Set Authorization Header, use token from loginUser
+
+```json
+{
+  "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjI3MzgyNDQsInVzZXJuYW1lIjoidXNyMiJ9.z0yrV6ajZO8IqFBlEuTwAnKRP-C15MuL1REmjJ5YYU8"
+}
+```
+
+Execute createLink
+
+
+```json
+mutation createLink {
+  createLink(input: {title: "real link!", address: "www.graphql.org"}) {
+    user {
+      name
+    }
+  }
+}
+```
+
+Expected output similar to:
+
+```json
+{
+  "data": {
+    "createLink": {
+      "user": {
+        "name": "usr2"
+      }
+    }
+  }
+}
+```
+
+#### findLinks
+
+Execute findLinks
+
+
+```json
+query findLinks {
+  links {
+    title
+    address
+    id
+  }
+}
+```
+
+Expected output similar to:
+
+```json
+{
+  "data": {
+    "links": [
+      {
+        "title": "real link!",
+        "address": "www.graphql.org",
+        "id": "1"
+      },
+      {
+        "title": "real link!",
+        "address": "www.graphql.org",
+        "id": "2"
+      }
+    ]
+  }
+}
+```
+
+
+#### refreshToken
+
+Execute refreshToken, provide current token as an input 
+
+
+```json
+mutation refreshToken{
+  refreshToken(input: {
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjI3MzgyNDQsInVzZXJuYW1lIjoidXNyMiJ9.z0yrV6ajZO8IqFBlEuTwAnKRP-C15MuL1REmjJ5YYU8"
+  })
+}
+```
+
+Expected output similar to:
+
+```json
+{
+  "data": {
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjI3Mzg5NjYsInVzZXJuYW1lIjoidXNyMiJ9.fKK07Zv6iuq6ep9FtV3CE7z_KDm7ljnZqRvePokSOEs"
+  }
+}
+```
 
 ### Tutorial
 to see the latest version of tutorial visit https://www.howtographql.com/graphql-go/0-introduction/
+

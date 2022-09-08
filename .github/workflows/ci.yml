@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  ci:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [1.18]    # https://go.dev/doc/devel/release
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3.0.2
+
+    - name: Set up Go
+      uses: actions/setup-go@v3.3.0
+      with:
+        go-version: ${{ matrix.go-version }}
+
+    - name: Build
+      run: go build -v
+
+    - name: Test
+      run: go test -v

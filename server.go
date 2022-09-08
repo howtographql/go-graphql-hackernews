@@ -1,19 +1,18 @@
 package main
 
 import (
+	"github.com/99designs/gqlgen/graphql/handler"
+	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/go-chi/chi"
 	"log"
 	"net/http"
 	"os"
 
-	"github.com/glyphack/graphlq-golang/graph"
-	"github.com/glyphack/graphlq-golang/graph/generated"
-	"github.com/glyphack/graphlq-golang/internal/auth"
-	_ "github.com/glyphack/graphlq-golang/internal/auth"
-	database "github.com/glyphack/graphlq-golang/internal/pkg/db/mysql"
-
-	"github.com/99designs/gqlgen/graphql/handler"
-	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/go-chi/chi"
+	"github.com/AndriyKalashnykov/graphlq-golang/graph"
+	"github.com/AndriyKalashnykov/graphlq-golang/graph/generated"
+	"github.com/AndriyKalashnykov/graphlq-golang/internal/auth"
+	_ "github.com/AndriyKalashnykov/graphlq-golang/internal/auth"
+	database "github.com/AndriyKalashnykov/graphlq-golang/internal/pkg/db/mysql"
 )
 
 const defaultPort = "8080"

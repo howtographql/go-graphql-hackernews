@@ -8,14 +8,15 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/glyphack/graphlq-golang/graph/generated"
-	"github.com/glyphack/graphlq-golang/graph/model"
-	"github.com/glyphack/graphlq-golang/internal/auth"
-	"github.com/glyphack/graphlq-golang/internal/links"
-	"github.com/glyphack/graphlq-golang/internal/users"
-	"github.com/glyphack/graphlq-golang/pkg/jwt"
+	"github.com/AndriyKalashnykov/graphlq-golang/graph/generated"
+	"github.com/AndriyKalashnykov/graphlq-golang/graph/model"
+	"github.com/AndriyKalashnykov/graphlq-golang/internal/auth"
+	"github.com/AndriyKalashnykov/graphlq-golang/internal/links"
+	"github.com/AndriyKalashnykov/graphlq-golang/internal/users"
+	"github.com/AndriyKalashnykov/graphlq-golang/pkg/jwt"
 )
 
+// CreateLink is the resolver for the createLink field.
 func (r *mutationResolver) CreateLink(ctx context.Context, input model.NewLink) (*model.Link, error) {
 	user := auth.ForContext(ctx)
 	if user == nil {
@@ -33,6 +34,7 @@ func (r *mutationResolver) CreateLink(ctx context.Context, input model.NewLink) 
 	return &model.Link{ID: strconv.FormatInt(linkId, 10), Title: link.Title, Address: link.Address, User: grahpqlUser}, nil
 }
 
+// CreateUser is the resolver for the createUser field.
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (string, error) {
 	var user users.User
 	user.Username = input.Username
@@ -45,6 +47,7 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 	return token, nil
 }
 
+// Login is the resolver for the login field.
 func (r *mutationResolver) Login(ctx context.Context, input model.Login) (string, error) {
 	var user users.User
 	user.Username = input.Username
@@ -61,6 +64,7 @@ func (r *mutationResolver) Login(ctx context.Context, input model.Login) (string
 	return token, nil
 }
 
+// RefreshToken is the resolver for the refreshToken field.
 func (r *mutationResolver) RefreshToken(ctx context.Context, input model.RefreshTokenInput) (string, error) {
 	username, err := jwt.ParseToken(input.Token)
 	if err != nil {
@@ -73,6 +77,7 @@ func (r *mutationResolver) RefreshToken(ctx context.Context, input model.Refresh
 	return token, nil
 }
 
+// Links is the resolver for the links field.
 func (r *queryResolver) Links(ctx context.Context) ([]*model.Link, error) {
 	var resultLinks []*model.Link
 	var dbLinks []links.Link

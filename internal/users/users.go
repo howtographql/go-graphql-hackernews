@@ -2,7 +2,7 @@ package users
 
 import (
 	"database/sql"
-	"github.com/glyphack/graphlq-golang/internal/pkg/db/mysql"
+	database "github.com/AndriyKalashnykov/graphlq-golang/internal/pkg/db/mysql"
 	"golang.org/x/crypto/bcrypt"
 	"log"
 )
