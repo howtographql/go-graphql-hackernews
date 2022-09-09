@@ -1,16 +1,16 @@
 # GraphQL Server (schema-first) With Golang
 
 ## Table Of Contents
-- [Table Of Contents](#table-of-contents)
-  - [How to Run The Project <a name="how-to-run-project"></a>](#how-to-run-the-project-)
-    - [createUser](#createuser)
-    - [loginUser](#loginuser)
-    - [createLink](#createlink)
-    - [findLinks](#findlinks)
-    - [refreshToken](#refreshtoken)
-  - [Tutorial](#tutorial)
-  
-  
+- [GraphQL Server (schema-first) With Golang](#graphql-server-schema-first-with-golang)
+  - [Table Of Contents](#table-of-contents)
+    - [How to Run The Project <a name="how-to-run-project"></a>](#how-to-run-the-project-)
+      - [createUser](#createuser)
+      - [loginUser](#loginuser)
+      - [createLink](#createlink)
+      - [findLinks](#findlinks)
+      - [refreshToken](#refreshtoken)
+    - [Tutorial](#tutorial)
+
 ### How to Run The Project <a name="how-to-run-project"></a>
 First start mysql server with docker:
 ```bash
@@ -24,7 +24,7 @@ CREATE DATABASE hackernews;
 ```
 finally run the server: 
 ```bash
-go run server.go
+make run
 ```
 Now navigate to https://localhost:8080 you can see graphiql playground and query the graphql server.
 
