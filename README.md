@@ -93,7 +93,7 @@ mutation createLink {
 
 Expected output similar to:
 
-```graphql
+```json
 {
   "data": {
     "createLink": {

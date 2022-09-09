@@ -1,68 +1,33 @@
-GOPATH := $(shell pwd)/vendor:$(shell pwd):$(shell echo $$GOPATH)
-PATH := $(PATH):$(shell echo $$GOPATH/bin)
-GOBIN := $(shell pwd)/bin
-GOFILES := $(shell go list ./... | grep -v /vendor/ | grep -v _extra)
 GOFLAGS="-mod=mod"
 
-.PHONY: all
-all: test
-
-.PHONY: test
-test: clean generate
-	@mkdir -p ./.bin/
-	@export GOFLAGS=$(GOFLAGS); go test -v ./... -cover -coverprofile=./.bin/coverage.out
-	@sudo rm -rf vendor/
-
-.PHONY: test-coverage-view
-test-coverage-view: test generate
-	@export GOFLAGS=$(GOFLAGS); go tool cover -html=./.bin/coverage.out
-
-.PHONY: clean
 clean:
 	@rm -rf ./.bin/
+	@sudo rm -rf vendor/
+	@mkdir ./.bin/
+
+generate: clean
 	@sudo rm -rf graph/generated
 	@sudo rm -rf graph/model
-	@sudo rm -rf vendor/
+	@export GO15VENDOREXPERIMENT=0; export GOFLAGS=$(GOFLAGS); go run github.com/99designs/gqlgen generate
 
-.PHONY: run
-run: clean generate
-	@mkdir -p ./.bin/
-	@export GOFLAGS=$(GOFLAGS); go run server.go
-	@sudo rm -rf vendor/
+test: generate
+	@export GO15VENDOREXPERIMENT=0; export GOFLAGS=$(GOFLAGS); go test -v ./...
 
-.PHONY: build
-build: clean generate
-	@mkdir -p ./.bin/
-	@export GOFLAGS=$(GOFLAGS); go build -o .bin/server server.go
-	@sudo rm -rf vendor/
+run: test
+	@export GO15VENDOREXPERIMENT=0; export GOFLAGS=$(GOFLAGS); go run server.go
+	
+build: generate
+	@export GO15VENDOREXPERIMENT=0; export GOFLAGS=$(GOFLAGS); go build -o ./.bin/server server.go
 
-.PHONY: image
-image: clean
-	@mkdir -p ./.bin/
+image: generate
 	docker build -t graphql-golang .
-	@sudo rm -rf vendor/
 
+get: clean
+	@export GO15VENDOREXPERIMENT=0; export GOFLAGS=$(GOFLAGS); go get .
 
-.PHONY: reset
-reset: clean
-	@export GOFLAGS=$(GOFLAGS); go get .
-
-.PHONY: deps
 deps:
-	@go install github.com/99designs/gqlgen@latest
+	@export GO15VENDOREXPERIMENT=0; export GOFLAGS=$(GOFLAGS); go install github.com/99designs/gqlgen@latest
 
-.PHONY: upgrade
-upgrade:
-	go get -u
-	go mod tidy
-	@sudo rm -rf vendor/
-	# go get -u ./...
-
-
-.PHONY: generate
-generate:
-	@sudo rm -rf vendor/
-	@sudo rm -rf graph/generated
-	@sudo rm -rf graph/model
-	@export GOFLAGS=$(GOFLAGS); go run github.com/99designs/gqlgen generate
-	@sudo rm -rf vendor/
+upgrade: clean
+	@export GO15VENDOREXPERIMENT=0; export GOFLAGS=$(GOFLAGS); go get -u
+	@export GO15VENDOREXPERIMENT=0; export GOFLAGS=$(GOFLAGS); go mod tidy

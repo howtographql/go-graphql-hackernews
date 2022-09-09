@@ -26,7 +26,12 @@ func (r *mutationResolver) CreateLink(ctx context.Context, input model.NewLink) 
 	link.Title = input.Title
 	link.Address = input.Address
 	link.User = user
-	linkId := link.Save()
+
+	linkId, err := link.Save()
+	if err != nil {
+		return &model.Link{}, err
+	}
+
 	grahpqlUser := &model.User{
 		ID:   user.ID,
 		Name: user.Username,
@@ -39,7 +44,12 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 	var user users.User
 	user.Username = input.Username
 	user.Password = input.Password
-	user.Create()
+
+	err := user.Create()
+	if err != nil {
+		return "", err
+	}
+
 	token, err := jwt.GenerateToken(user.Username)
 	if err != nil {
 		return "", err
