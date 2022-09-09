@@ -30,7 +30,7 @@ Now navigate to https://localhost:8080 you can see graphiql playground and query
 
 #### createUser
 
-Execute createUser
+Execute createUser mutation
 
 ```graphql
 mutation createUser {
@@ -38,7 +38,7 @@ mutation createUser {
 }
 ```
 
-Expected output similar to:
+Expected JSON result:
 
 ```json
 {
@@ -50,7 +50,7 @@ Expected output similar to:
 
 #### loginUser
 
-Execute loginUser
+Execute loginUser mutation
 
 ```graphql
 mutation loginUser {
@@ -58,7 +58,7 @@ mutation loginUser {
 }
 ```
 
-Expected output similar to:
+Expected JSON result:
 
 ```json
 {
@@ -72,13 +72,13 @@ Expected output similar to:
 
 Set Authorization Header, use token from loginUser
 
-```graphql
+```json
 {
   "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjI3MzgyNDQsInVzZXJuYW1lIjoidXNyMiJ9.z0yrV6ajZO8IqFBlEuTwAnKRP-C15MuL1REmjJ5YYU8"
 }
 ```
 
-Execute createLink
+Execute createLink mutation
 
 
 ```graphql
@@ -91,7 +91,7 @@ mutation createLink {
 }
 ```
 
-Expected output similar to:
+Expected JSON result:
 
 ```json
 {
@@ -107,7 +107,7 @@ Expected output similar to:
 
 #### findLinks
 
-Execute findLinks
+Execute findLinks query
 
 
 ```graphql
@@ -120,7 +120,7 @@ query findLinks {
 }
 ```
 
-Expected output similar to:
+Expected JSON result:
 
 ```json
 {
@@ -144,7 +144,7 @@ Expected output similar to:
 
 #### refreshToken
 
-Execute refreshToken, provide current token as an input 
+Execute refreshToken mutation, provide current token as an input 
 
 
 ```graphql
@@ -155,7 +155,7 @@ mutation refreshToken{
 }
 ```
 
-Expected output similar to:
+Expected JSON result:
 
 ```json
 {
