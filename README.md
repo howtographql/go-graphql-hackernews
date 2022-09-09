@@ -22,11 +22,17 @@ docker exec -it mysql bash
 mysql -u root -p
 CREATE DATABASE hackernews;
 ```
-finally run the server: 
+
+Run the server: 
+
 ```bash
 make run
 ```
-Now navigate to https://localhost:8080 you can see graphiql playground and query the graphql server.
+Navigate to https://localhost:8080 you can see graphiql playground and query the graphql server.
+
+```bash
+xdg-open http://localhost:8080/
+```
 
 #### createUser
 
