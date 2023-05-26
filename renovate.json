@@ -5,7 +5,7 @@
     ":dependencyDashboard",
     "schedule:daily"
   ],
-  "semanticCommits": false,
+  "semanticCommits": true,
   "postUpdateOptions": [
     "gomodTidy"
   ],
