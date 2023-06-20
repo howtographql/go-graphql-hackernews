@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go-version: [ '1.20' ]    # https://go.dev/doc/devel/release
+        go-version: [ '1.20.3' ]    # https://go.dev/doc/devel/release
 
     steps:
     - name: Checkout
