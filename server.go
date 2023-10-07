@@ -1,12 +1,13 @@
 package main
 
 import (
-	"github.com/99designs/gqlgen/graphql/handler"
-	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/go-chi/chi"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/99designs/gqlgen/graphql/handler"
+	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/go-chi/chi/v5"
 
 	"github.com/AndriyKalashnykov/graphlq-golang/graph"
 	"github.com/AndriyKalashnykov/graphlq-golang/graph/generated"
