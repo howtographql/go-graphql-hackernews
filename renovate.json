@@ -5,7 +5,6 @@
     ":dependencyDashboard",
     "schedule:daily"
   ],
-  "semanticCommits": true,
   "postUpdateOptions": [
     "gomodTidy"
   ],
@@ -14,7 +13,17 @@
   "groupName": "all",
   "force": {
     "constraints": {
-      "go": "1.20"
+      "go": "1.21"
     }
-  }
+  },
+  "platformAutomerge": true,
+  "packageRules": [
+    {
+      "description": "Automerge non-major updates",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    }
+  ]
 }
