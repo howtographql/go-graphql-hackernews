@@ -1,3 +1,6 @@
+[![CI](https://github.com/AndriyKalashnykov/graphql-golang/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/AndriyKalashnykov/graphql-golang/actions/workflows/ci.yml)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FAndriyKalashnykov%2Fgraphql-golang&count_bg=%2340C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://app.renovatebot.com/dashboard#github/AndriyKalashnykov/graphql-golang)
 # GraphQL Server (schema-first) With Golang
 
 ## Table Of Contents
@@ -173,4 +176,3 @@ Expected JSON result:
 
 ### Tutorial
 to see the tutorial visit https://www.howtographql.com/graphql-go/0-introduction/
-
