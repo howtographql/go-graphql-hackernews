@@ -5,3 +5,4 @@ dist/
 vendor/
 graph/generated
 graph/model
+.vscode/
