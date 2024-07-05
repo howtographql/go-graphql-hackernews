@@ -3,13 +3,13 @@ module github.com/AndriyKalashnykov/graphlq-golang
 go 1.21
 
 require (
-	github.com/99designs/gqlgen v0.17.43
+	github.com/99designs/gqlgen v0.17.49
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/go-chi/chi/v5 v5.0.11
-	github.com/go-sql-driver/mysql v1.7.1
+	github.com/go-chi/chi/v5 v5.1.0
+	github.com/go-sql-driver/mysql v1.8.1
 	github.com/golang-migrate/migrate v3.5.4+incompatible
-	github.com/vektah/gqlparser/v2 v2.5.11
-	golang.org/x/crypto v0.18.0
+	github.com/vektah/gqlparser/v2 v2.5.16
+	golang.org/x/crypto v0.25.0
 )
 
 require (
