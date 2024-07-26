@@ -29,5 +29,4 @@ deps:
 	@export GO15VENDOREXPERIMENT=0; export GOFLAGS=$(GOFLAGS); go install github.com/99designs/gqlgen@latest
 
 upgrade: clean
-	@export GO15VENDOREXPERIMENT=0; export GOFLAGS=$(GOFLAGS); go get -u
-	@export GO15VENDOREXPERIMENT=0; export GOFLAGS=$(GOFLAGS); go mod tidy
+	@export GO15VENDOREXPERIMENT=0; export GOFLAGS=$(GOFLAGS); go get -u; go mod tidy
