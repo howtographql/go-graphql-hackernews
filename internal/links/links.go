@@ -1,8 +1,8 @@
 package links
 
 import (
-	database "github.com/glyphack/graphlq-golang/internal/pkg/db/mysql"
-	"github.com/glyphack/graphlq-golang/internal/users"
+	database "github.com/AndriyKalashnykov/graphlq-golang/internal/pkg/db/mysql"
+	"github.com/AndriyKalashnykov/graphlq-golang/internal/users"
 	"log"
 )
 
@@ -15,24 +15,28 @@ type Link struct {
 }
 
 //#2
-func (link Link) Save() int64 {
+func (link Link) Save() (int64, error) {
 	//#3
 	stmt, err := database.Db.Prepare("INSERT INTO Links(Title,Address, UserID) VALUES(?,?, ?)")
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
 	}
 	//#4
+
 	res, err := stmt.Exec(link.Title, link.Address, link.User.ID)
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
+		return 0, err
 	}
+
 	//#5
 	id, err := res.LastInsertId()
 	if err != nil {
-		log.Fatal("Error:", err.Error())
+		log.Print("Error:", err.Error())
+		return 0, err
 	}
 	log.Print("Row inserted!")
-	return id
+	return id, nil
 }
 
 func GetAll() []Link {

@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+
+  builds:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [ 1.23 ]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ matrix.go-version }}
+
+    - name: Generate
+      run: make generate
+
+    - name: Build
+      run: make build
+
+  tests:
+    strategy:
+      matrix:
+        name: [unit]
+    runs-on: ubuntu-latest
+    name: test (${{ matrix.name }})
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: "go.mod"
+          cache: true
+
+      - name: Run ${{ matrix.name }} tests
+        run: make test

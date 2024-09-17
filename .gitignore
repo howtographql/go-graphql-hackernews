@@ -1,1 +1,8 @@
-.idea
+.DS_Store
+.bin/
+.idea/
+dist/
+vendor/
+graph/generated
+graph/model
+.vscode/

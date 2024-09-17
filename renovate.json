@@ -1,0 +1,29 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":dependencyDashboard",
+    "schedule:daily"
+  ],
+  "postUpdateOptions": [
+    "gomodTidy"
+  ],
+  "commitMessagePrefix": "chore(all): ",
+  "commitMessageAction": "update",
+  "groupName": "all",
+  "force": {
+    "constraints": {
+      "go": "1.23"
+    }
+  },
+  "platformAutomerge": true,
+  "packageRules": [
+    {
+      "description": "Automerge non-major updates",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    }
+  ]
+}
